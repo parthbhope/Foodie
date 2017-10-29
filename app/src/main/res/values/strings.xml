@@ -2,4 +2,6 @@
     <string name="app_name">Foodie</string>
     <string name="login_btn_text">Login</string>
     <string name="java_project">Foodie</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
