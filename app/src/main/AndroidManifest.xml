@@ -17,7 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuActivity" />
-        <activity android:name=".OnlyCategory"></activity>
+        <activity android:name=".OnlyCategory" />
+        <activity android:name=".SnacksList" />
+        <activity android:name=".ChatList" />
+        <activity android:name=".ChineseList" />
+        <activity android:name=".SouthIndianList" />
+        <activity android:name=".BeveragesList"></activity>
     </application>
 
 </manifest>

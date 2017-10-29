@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="javaproject.foodie.BeveragesList">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:paddingBottom="20dp">
+
+                <!--               android:layout_alignParentEnd="true"
+                               android:layout_alignParentTop="true"-->
+
+
+                <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="javaproject.foodie.MainActivity">
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="-1351dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/bevcardView"
+                            android:layout_width="match_parent"
+                            android:layout_height="128dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:paddingBottom="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/card1"
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:contentDescription="Product Image"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/beverages" />
+
+                                <TextView
+                                    android:id="@+id/desc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_toEndOf="@+id/card1"
+                                    android:layout_toRightOf="@+id/card1"
+                                    android:paddingRight="8dp"
+                                    android:paddingStart="8dp"
+                                    android:paddingTop="8dp"
+                                    android:text="Thumbs Up 200ml"
+
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignStart="@+id/minus"
+                                    android:layout_below="@+id/desc"
+                                    android:paddingBottom="0dp"
+
+                                    android:paddingLeft="0dp"
+                                    android:paddingTop="8dp"
+                                    android:text="Rs 100"
+                                    android:textSize="24sp" />
+
+                                <Button
+                                    android:id="@+id/minus"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_toEndOf="@id/card1"
+                                    android:paddingBottom="8dp"
+                                    android:text="-" />
+
+                                <TextView
+                                    android:id="@+id/quantity_text_view"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="4dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_toEndOf="@id/minus"
+                                    android:paddingBottom="13dp"
+                                    android:text="77"
+                                    android:textColor="#000" />
+
+
+                                <Button
+                                    android:id="@+id/plus"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_toEndOf="@id/quantity_text_view"
+                                    android:layout_toRightOf="@id/quantity_text_view"
+
+                                    android:text="+" />
+
+                                <Button
+                                    android:layout_width="90dp"
+                                    android:layout_height="45dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_toEndOf="@+id/plus"
+                                    android:text="Add" />
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
