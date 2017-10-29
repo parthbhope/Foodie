@@ -48,10 +48,10 @@
                     android:layout_height="128dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
+                    android:onClick="listOfSnacks"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="15dp"
-
                     >
 
                     <RelativeLayout
@@ -96,6 +96,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
+                    android:onClick="listOfChat"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="11dp"
                     app:cardElevation="10dp">
@@ -142,6 +143,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
+                    android:onClick="listOfChinese"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -188,6 +190,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
+                    android:onClick="listOfSouthIndian"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -235,6 +238,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
+                    android:onClick="listOfChinese"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">

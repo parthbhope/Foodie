@@ -18,7 +18,10 @@
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                android:paddingBottom="20dp">
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp">
 
                 <!--               android:layout_alignParentEnd="true"
                                android:layout_alignParentTop="true"-->

@@ -19,11 +19,11 @@ public class OnlyCategory extends AppCompatActivity {
 
     }
 
-//    public void listOfChat(View view) {
-//        Intent i = new Intent(this, ChatList.class);
-//        startActivity(i);
-//
-//    }
+    public void listOfChat(View view) {
+        Intent i = new Intent(this, ChatList.class);
+        startActivity(i);
+
+    }
 
     public void listOfChinese(View view) {
         Intent i = new Intent(this, ChineseList.class);
