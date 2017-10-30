@@ -238,7 +238,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
-                    android:onClick="listOfChinese"
+                    android:onClick="listOfBeverages"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
@@ -257,7 +257,7 @@
                             android:background="#ffffff"
                             android:contentDescription="Product Image"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/chinese" />
+                            android:src="@drawable/beverages" />
 
 
                         <TextView
@@ -269,7 +269,7 @@
                             android:layout_toRightOf="@+id/card5"
                             android:background="#ffffff"
                             android:gravity="center"
-                            android:text="Chinese"
+                            android:text="Beverages"
                             android:textAllCaps="true"
                             android:textSize="32sp"
                             android:textStyle="bold" />

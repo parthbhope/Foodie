@@ -103,11 +103,12 @@
                                     android:layout_marginRight="4dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_toEndOf="@id/card1"
+                                    android:onClick="decreaseQuantity"
                                     android:paddingBottom="8dp"
                                     android:text="-" />
 
                                 <TextView
-                                    android:id="@+id/quantity_text_view"
+                                    android:id="@+id/quantity_thumbsup"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentBottom="true"
@@ -116,7 +117,7 @@
                                     android:layout_marginTop="16dp"
                                     android:layout_toEndOf="@id/minus"
                                     android:paddingBottom="13dp"
-                                    android:text="77"
+                                    android:text="0"
                                     android:textColor="#000" />
 
 
@@ -127,9 +128,9 @@
                                     android:layout_alignParentBottom="true"
                                     android:layout_marginLeft="4dp"
                                     android:layout_marginTop="16dp"
-                                    android:layout_toEndOf="@id/quantity_text_view"
-                                    android:layout_toRightOf="@id/quantity_text_view"
-
+                                    android:layout_toEndOf="@id/quantity_thumbsup"
+                                    android:layout_toRightOf="@id/quantity_thumbsup"
+                                    android:onClick="increaseQuantity"
                                     android:text="+" />
 
                                 <Button
@@ -139,6 +140,7 @@
                                     android:layout_marginLeft="8dp"
                                     android:layout_marginStart="4dp"
                                     android:layout_toEndOf="@+id/plus"
+                                    android:onClick="added_to_cart"
                                     android:text="Add" />
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
