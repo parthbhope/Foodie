@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nac_home"
+    <!--<item android:id="@+id/nac_home"
         android:icon="@mipmap/ic_home_black_24dp"
         android:title="Home" />
     <item android:id="@+id/nav_orders"
@@ -14,5 +14,5 @@
         android:title="Log Out" />
     <item android:id="@+id/nav_about"
         android:icon="@mipmap/ic_code_black_24dp"
-        android:title="About" />
+        android:title="About" />-->
 </menu>

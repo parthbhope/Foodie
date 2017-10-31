@@ -1,5 +1,6 @@
 package javaproject.foodie;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    static public int f_no = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +36,13 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Fragment fragment = new Cart();
+                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main,fragment);
+                ft.commit();
+
             }
         });
 
@@ -55,7 +62,18 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(f_no != 0)
+            {
+                Fragment fragment = new fragment_nav();
+                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, fragment);
+                ft.commit();
+                f_no = 0;
+            }
+            else
+            {
+                // TODO: Add alert message
+            }
         }
     }
 
@@ -87,19 +105,37 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nac_home) {
+            Fragment fragment = new fragment_nav();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main,fragment);
+            ft.commit();
+        } else if (id == R.id.nav_about) {
+            Fragment fragment = new About();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main,fragment);
+            ft.commit();
+        } else if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent i = new Intent(this,WelcomeScreen.class);
+            startActivity(i);
+        } else if (id == R.id.nav_settings) {
+            Fragment fragment = new settings();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main,fragment);
+            ft.commit();
+        } else if (id == R.id.nav_orders) {
+            Fragment fragment = new Orders();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main,fragment);
+            ft.commit();
         }
+        /*else{
+            Fragment fragment = new Cart();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main,fragment);
+            ft.commit();
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -110,10 +146,42 @@ public class MainActivity extends AppCompatActivity
     //public void onCategorySelected()
     public void onSelectCategory(View view)
     {
-        Fragment fragment = new SnacksList();
-        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_main,fragment);
-        ft.commit();
-    }
+        if(view.getId() == R.id.cardView) {
+            Fragment fragment = new SnacksList();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+            f_no = 1;
+        }
+
+        else if(view.getId() == R.id.cardView2) {
+            Fragment fragment = new ChatList();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+            f_no = 2;
+        }
+        else if(view.getId() == R.id.cardView3) {
+            Fragment fragment = new ChineseList();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+            f_no = 3;
+        }
+        else if(view.getId() == R.id.cardView4) {
+            Fragment fragment = new SouthIndianList();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+            f_no = 4;
+        }
+        else if(view.getId() == R.id.cardView5) {
+            Fragment fragment = new BeveragesList();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
+            f_no = 5;
+        }
+        }
 }
 

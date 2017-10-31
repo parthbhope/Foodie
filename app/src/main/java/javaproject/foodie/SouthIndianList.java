@@ -1,21 +1,23 @@
 package javaproject.foodie;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SouthIndianList extends AppCompatActivity {
+public class SouthIndianList extends Fragment {
     int no_of_idlisambhar = 0;
     String idlisambhar = "Idli Sambhar";
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_south_indian_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_south_indian_list, container, false);
     }
-
-    private void displayQuantity(int number) {
+    /*private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_idlisambhar);
         quantityTextView.setText("" + number);
 
@@ -40,5 +42,5 @@ public class SouthIndianList extends AppCompatActivity {
             Toast.makeText(this, "Tu Uth..Ghari ja ani banav", Toast.LENGTH_SHORT).show();
 
 
-    }
+    }*/
 }
