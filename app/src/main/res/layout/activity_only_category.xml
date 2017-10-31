@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="javaproject.foodie.OnlyCategory">
+    tools:context="javaproject.foodie.fragment_nav">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,17 +29,17 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="20dp"
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginTop="20dp"-->
 
-                    android:fontFamily="serif"
-                    android:text="@string/app_name"
-                    android:textAlignment="center"
-                    android:textColor="#f00"
-                    android:textSize="40sp" />
+                    <!--android:fontFamily="serif"-->
+                    <!--android:text="@string/app_name"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="#f00"-->
+                    <!--android:textSize="40sp" />-->
 
 
                 <android.support.v7.widget.CardView
@@ -48,11 +48,10 @@
                     android:layout_height="128dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:onClick="listOfSnacks"
+                    android:onClick="onSelectCategory"
                     android:paddingBottom="20dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="15dp"
-                    >
+                    app:cardElevation="15dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
