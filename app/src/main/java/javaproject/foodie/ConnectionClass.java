@@ -12,7 +12,7 @@ import com.mysql.jdbc.Driver;
 
 public class ConnectionClass {
     String classs = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://192.168.0.5:3306/foodie";
+    String url = "jdbc:mysql://192.168.43.212:3306/foodie";
     String un = "kshiro";
     // String url = "jdbc:mysql://000webhost.com:3306/id2394272_foodie";
     //String un = "id3068596_qwerty";

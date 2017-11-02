@@ -37,16 +37,17 @@ import java.util.ListIterator;
  * Created by ASUS on 02-Nov-17.
  */
 
-public class Orders extends Fragment {
+public class BillActivity extends Fragment {
 
     SearchView sc;
     boolean flag;
     String searchtext;
-    ListItem3 listItem;
-    ArrayList<ListItem3> itemArrayList;
+    String itemName[];
+    ListItem2 listItem;
+    ArrayList<ListItem2> itemArrayList;
     int productidlist[];
     String itemPrice[];
-    String itemQuantity[];
+    int itemQuantity[];
     int count;
     ConnectionClass connectionClass;
 
@@ -54,17 +55,17 @@ public class Orders extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_list_item,container,false);
-        final ListView listView3 = (ListView) view.findViewById(R.id.content_list_item_list_view);
+        final ListView listView2 = (ListView) view.findViewById(R.id.content_list_item_list_view);
         //sc = (SearchView)view.findViewById(R.id.sc);
         //MainActivity.f_no=3;
-        final CustomeAdapter3 customeAdapter ;
+        final CustomeAdapter2 customeAdapter ;
         connectionClass = new ConnectionClass();
         final Connection con = connectionClass.CONN();
         try {
             if (con != null) {
                 Statement st = con.createStatement();
                 ResultSet rs;
-                rs = st.executeQuery("select * from orders;");
+                rs = st.executeQuery("select * from cart");
 
                 flag=false;
                 count=0;
@@ -75,29 +76,29 @@ public class Orders extends Fragment {
 
                 ResultSet r;
                 Statement st2 = con.createStatement();
-                r=st2.executeQuery("select * from orders;");
+                r=st2.executeQuery("select * from cart;");
                 if(r.first())
-                    getActivity().setTitle("Cart");
+                    getActivity().setTitle("FOODIE");
 
                 //sc.setQueryHint("Search Here");
                 itemPrice = new String[count];
-                itemQuantity = new String[count];
+                itemName = new String[count];
                 int index=0;
-                itemArrayList = new ArrayList<ListItem3>();
+                itemArrayList = new ArrayList<ListItem2>();
                 itemArrayList.clear();
                 if(rs.first())
                 {
-                    itemQuantity[index] = rs.getString(1);
+                    itemName[index] = rs.getString(1);
                     itemPrice[index] = rs.getString(2);
-                    itemArrayList.add(new ListItem3(itemQuantity[index],itemPrice[index]));
+                    itemArrayList.add(new ListItem2(itemName[index],itemPrice[index], 0));
 
                 }
                 while(rs.next())
                 {
                     index++;
-                    itemQuantity[index] = rs.getString(1);
+                    itemName[index] = rs.getString(1);
                     itemPrice[index] = rs.getString(2);
-                    itemArrayList.add(new ListItem3(itemQuantity[index],itemPrice[index]));
+                    itemArrayList.add(new ListItem2(itemName[index],itemPrice[index], 0));
 
                 }
 
@@ -142,15 +143,15 @@ public class Orders extends Fragment {
                             Toast.makeText(getActivity(),"Exception "+e,Toast.LENGTH_LONG).show();
                         }
                         if (TextUtils.isEmpty(newText.toString())) {
-                            listView3.clearTextFilter();
+                            listView2.clearTextFilter();
                         } else {
-                            listView3.setFilterText(newText.toString());
+                            listView2.setFilterText(newText.toString());
                         }
                         return true;
                     }
                 });*/
 
-                /*listView3.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                /*listView2.setOnItemClickListener(new AdapterView.OnItemClickListener()
                 {
                     Fragment fragment = null;
                     @Override
@@ -172,33 +173,33 @@ public class Orders extends Fragment {
                         }
 
                 });*/
-                /*customeAdapter = new BillActivity.CustomeAdapter3(getActivity().getApplicationContext(),itemArrayList);
-                listView3.setAdapter(customeAdapter);
+                /*customeAdapter = new BillActivity.CustomeAdapter2(getActivity().getApplicationContext(),itemArrayList);
+                listView2.setAdapter(customeAdapter);
 
-                listView3.setTextFilterEnabled(true);*/
-                customeAdapter = new CustomeAdapter3(getActivity().getApplicationContext(),itemArrayList);
-                listView3.setAdapter(customeAdapter);
+                listView2.setTextFilterEnabled(true);*/
+                customeAdapter = new CustomeAdapter2(getActivity().getApplicationContext(),itemArrayList);
+                listView2.setAdapter(customeAdapter);
 
-                listView3.setTextFilterEnabled(true);
+                listView2.setTextFilterEnabled(true);
 
             } else {
                 Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
             }
         }
         catch (Exception e) {
-            Toast.makeText(getActivity(), "Exception : "+e, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Exception : "+e, Toast.LENGTH_SHORT).show();
         }
         return view;
     }
 
-    public class CustomeAdapter3 extends ArrayAdapter<String> {
+    public class CustomeAdapter2 extends ArrayAdapter<String> {
 
         Context context;
-        public ArrayList<ListItem3> itemArrayList;
-        public ArrayList<ListItem3> orig;
+        public ArrayList<ListItem2> itemArrayList;
+        public ArrayList<ListItem2> orig;
 
-        public CustomeAdapter3(Context context,ArrayList<ListItem3> itemArrayList) {
-            super(context, R.layout.fragment_orders);
+        public CustomeAdapter2(Context context,ArrayList<ListItem2> itemArrayList) {
+            super(context, R.layout.activity_bill);
             this.context = context;
             this.itemArrayList=itemArrayList;
         }
@@ -220,11 +221,11 @@ public class Orders extends Fragment {
 
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            CustomeAdapter3.ListHolder holder;
-            convertView = getActivity().getLayoutInflater().inflate(R.layout.fragment_orders, null);
-            holder = new ListHolder();
+            BillActivity.CustomeAdapter2.ListHolder holder;
+            convertView = getActivity().getLayoutInflater().inflate(R.layout.activity_bill, null);
+            holder = new BillActivity.CustomeAdapter2.ListHolder();
             //ImageView imageView = (ImageView) convertView.findViewById(R.id.list_item_image);
-            holder.quantity = (TextView) convertView.findViewById(R.id.desc);
+            holder.name = (TextView) convertView.findViewById(R.id.desc);
             holder.price = (TextView) convertView.findViewById(R.id.price);
 
             //imageView.setImageResource(itemArrayList.get(position).getImage());
@@ -246,7 +247,7 @@ public class Orders extends Fragment {
                     }
                 }
             });*/
-            holder.quantity.setText(itemArrayList.get(position).getQuantity());
+            holder.name.setText(itemArrayList.get(position).getName());
             String pricetext = "";
             pricetext = "Rs. " + itemArrayList.get(position).getPrice();
             holder.price.setText(pricetext);
@@ -256,7 +257,7 @@ public class Orders extends Fragment {
 
         public class ListHolder
         {
-            TextView quantity;
+            TextView name;
             TextView price;
             int pos;
         }
@@ -267,12 +268,12 @@ public class Orders extends Fragment {
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
                     final FilterResults oReturn = new FilterResults();
-                    final ArrayList<ListItem3> results = new ArrayList<ListItem3>();
+                    final ArrayList<ListItem2> results = new ArrayList<ListItem2>();
                     if (orig == null)
                         orig = itemArrayList;
                     if (constraint != null) {
                         if (orig != null && orig.size() > 0) {
-                            for (final ListItem3 g : orig) {
+                            for (final ListItem2 g : orig) {
                                 if (g.getName().toLowerCase()
                                         .contains(constraint.toString().toLowerCase()))
                                     re  sults.add(g);
@@ -287,25 +288,25 @@ public class Orders extends Fragment {
                 @Override
                 protected void publishResults(CharSequence constraint,
                                               FilterResults results) {
-                    itemArrayList = (ArrayList<ListItem3>) results.values;
+                    itemArrayList = (ArrayList<ListItem2>) results.values;
                     notifyDataSetChanged();
                 }
             };
         }*/
     }
 
-    public class ListItem3 {
+    public class ListItem2 {
 
-        private String quantity;
+        private String name;
         private String price;
 
-        public ListItem3(String quantity,String price){
-            this.quantity = quantity;
+        public ListItem2(String name,String price,int image){
+            this.name = name;
             this.price = price;
         }
 
-        public String getQuantity(){
-            return quantity;
+        public String getName(){
+            return name;
         }
 
         public String getPrice(){

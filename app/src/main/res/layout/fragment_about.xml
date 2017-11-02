@@ -2,12 +2,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="javaproject.foodie.About">
+    tools:context="javaproject.foodie.About"
+    android:background="#6d4c41">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="About Developers" />
 
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="32dp">
+        <TextView
+            android:layout_marginTop="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:text="Project made by"
+            android:fontFamily="sans-serif"/>
+    <TextView
+        android:layout_marginTop="88dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:text="Ashutosh Gajre"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:textColor="#fff"
+        android:layout_marginTop="88dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:text="Parth Bhope"
+        android:fontFamily="sans-serif"/>
+    <TextView
+        android:textColor="#fff"
+        android:layout_marginTop="88dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:text="Apurva Deshpande"
+        android:fontFamily="sans-serif"/>
+</LinearLayout>
 </FrameLayout>

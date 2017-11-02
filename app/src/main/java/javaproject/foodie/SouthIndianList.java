@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SouthIndianList extends Fragment {
-    int no_of_idlisambhar = 0;
+    int no_of_items = 0;
     String idlisambhar = "Idli Sambhar";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -95,7 +95,7 @@
                                     android:textSize="24sp" />
 
                                 <Button
-                                    android:id="@+id/minus"
+                                    android:id="@+id/minusvcg"
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
                                     android:layout_alignParentBottom="true"
@@ -103,7 +103,7 @@
                                     android:layout_marginRight="4dp"
                                     android:layout_marginTop="16dp"
                                     android:layout_toEndOf="@id/card1"
-                                    android:onClick="decreaseQuantity"
+                                    android:onClick="decreaseQuantityvcg"
                                     android:paddingBottom="8dp"
                                     android:text="-" />
 
@@ -122,7 +122,7 @@
 
 
                                 <Button
-                                    android:id="@+id/plus"
+                                    android:id="@+id/plusvcg"
                                     android:layout_width="45dp"
                                     android:layout_height="45dp"
                                     android:layout_alignParentBottom="true"
@@ -130,7 +130,7 @@
                                     android:layout_marginTop="16dp"
                                     android:layout_toEndOf="@id/quantity_vcg"
                                     android:layout_toRightOf="@id/quantity_vcg"
-                                    android:onClick="increaseQuantity"
+                                    android:onClick="increaseQuantityvcg"
                                     android:text="+" />
 
                                 <Button

@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 public class SnacksList extends Fragment {
     int no_of_vcg = 0;
+    int no_of_garlictoast = 0;
+    int no_of_tikkisandwich = 0;
     String VegCG = " Veg Cheese Grilled S/W";
 
     @Override
@@ -25,24 +27,24 @@ public class SnacksList extends Fragment {
     /**
      * This method displays the given quantity value on the screen.
      */
-//    private void displayQuantity(int number) {
-//        TextView quantityTextView = (TextView) findViewById(R.id.quantity_vcg);
-//        quantityTextView.setText("" + number);
-//
-//    }
+    /*private void displayQuantity(int number) {
+       TextView quantityTextView = (TextView)findViewById(R.id.quantity_vcg);
+        quantityTextView.setText("" + number);
 
-//    public void increaseQuantity(View view) {
-//        displayQuantity(++no_of_vcg);
-//        // displayPrice(i*20);
-//    }
-//
-//    public void decreaseQuantity(View view) {
-//
-//        if (no_of_vcg > 0) {
-//            displayQuantity(--no_of_vcg);
-//        }
-//    }
-//
+    }
+
+    public void increaseQuantityvcg(View view) {
+        displayQuantity(++no_of_vcg);
+        // displayPrice(i*20);
+    }
+
+    public void decreaseQuantityvcg(View view) {
+
+        if (no_of_vcg > 0) {
+            displayQuantity(--no_of_vcg);
+        }
+    }
+*/
 //    public void added_to_cart(View view) {
 //        if (no_of_vcg > 0)
 //            Toast.makeText(this, no_of_vcg + " " + VegCG + " added", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,9 @@
 package javaproject.foodie;
 
+/**
+ * Created by ASUS on 01-Nov-17.
+ */
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,20 +37,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-/**
- * Created by ASUS on 02-Nov-17.
- */
 
-public class Orders extends Fragment {
+import static android.content.ContentValues.TAG;
+
+public class ListActivity extends Fragment {
 
     SearchView sc;
     boolean flag;
     String searchtext;
-    ListItem3 listItem;
-    ArrayList<ListItem3> itemArrayList;
+    String itemName[];
+    ListItem listItem;
+    ArrayList<ListItem> itemArrayList;
     int productidlist[];
     String itemPrice[];
-    String itemQuantity[];
+    int itemQuantity[];
     int count;
     ConnectionClass connectionClass;
 
@@ -54,17 +58,17 @@ public class Orders extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_list_item,container,false);
-        final ListView listView3 = (ListView) view.findViewById(R.id.content_list_item_list_view);
+        final ListView listView = (ListView) view.findViewById(R.id.content_list_item_list_view);
         //sc = (SearchView)view.findViewById(R.id.sc);
         //MainActivity.f_no=3;
-        final CustomeAdapter3 customeAdapter ;
+        final CustomeAdapter customeAdapter ;
         connectionClass = new ConnectionClass();
         final Connection con = connectionClass.CONN();
         try {
             if (con != null) {
                 Statement st = con.createStatement();
                 ResultSet rs;
-                rs = st.executeQuery("select * from orders;");
+                rs = st.executeQuery("select * from products where cat_id ="+MainActivity.cat_id);
 
                 flag=false;
                 count=0;
@@ -75,29 +79,29 @@ public class Orders extends Fragment {
 
                 ResultSet r;
                 Statement st2 = con.createStatement();
-                r=st2.executeQuery("select * from orders;");
+                r=st2.executeQuery("select * from category where cat_id="+MainActivity.cat_id);
                 if(r.first())
-                    getActivity().setTitle("Cart");
+                    getActivity().setTitle(r.getString(2));
 
                 //sc.setQueryHint("Search Here");
                 itemPrice = new String[count];
-                itemQuantity = new String[count];
+                itemName = new String[count];
                 int index=0;
-                itemArrayList = new ArrayList<ListItem3>();
+                itemArrayList = new ArrayList<ListItem>();
                 itemArrayList.clear();
                 if(rs.first())
                 {
-                    itemQuantity[index] = rs.getString(1);
-                    itemPrice[index] = rs.getString(2);
-                    itemArrayList.add(new ListItem3(itemQuantity[index],itemPrice[index]));
+                    itemName[index] = rs.getString(2);
+                    itemPrice[index] = rs.getString(3);
+                        itemArrayList.add(new ListItem(itemName[index],itemPrice[index], 0));
 
                 }
                 while(rs.next())
                 {
                     index++;
-                    itemQuantity[index] = rs.getString(1);
-                    itemPrice[index] = rs.getString(2);
-                    itemArrayList.add(new ListItem3(itemQuantity[index],itemPrice[index]));
+                    itemName[index] = rs.getString(2);
+                    itemPrice[index] = rs.getString(3);
+                    itemArrayList.add(new ListItem(itemName[index],itemPrice[index], 0));
 
                 }
 
@@ -142,15 +146,15 @@ public class Orders extends Fragment {
                             Toast.makeText(getActivity(),"Exception "+e,Toast.LENGTH_LONG).show();
                         }
                         if (TextUtils.isEmpty(newText.toString())) {
-                            listView3.clearTextFilter();
+                            listView.clearTextFilter();
                         } else {
-                            listView3.setFilterText(newText.toString());
+                            listView.setFilterText(newText.toString());
                         }
                         return true;
                     }
                 });*/
 
-                /*listView3.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
                 {
                     Fragment fragment = null;
                     @Override
@@ -170,35 +174,31 @@ public class Orders extends Fragment {
                         } else {
                             Toast.makeText(getActivity(), "Null Fragment", Toast.LENGTH_SHORT).show();
                         }
-
+                    }
                 });*/
-                /*customeAdapter = new BillActivity.CustomeAdapter3(getActivity().getApplicationContext(),itemArrayList);
-                listView3.setAdapter(customeAdapter);
+                customeAdapter = new CustomeAdapter(getActivity().getApplicationContext(),itemArrayList);
+                listView.setAdapter(customeAdapter);
 
-                listView3.setTextFilterEnabled(true);*/
-                customeAdapter = new CustomeAdapter3(getActivity().getApplicationContext(),itemArrayList);
-                listView3.setAdapter(customeAdapter);
-
-                listView3.setTextFilterEnabled(true);
+                listView.setTextFilterEnabled(true);
 
             } else {
                 Toast.makeText(getActivity(), "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
             }
         }
         catch (Exception e) {
-            Toast.makeText(getActivity(), "Exception : "+e, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Exception : "+e, Toast.LENGTH_SHORT).show();
         }
         return view;
     }
 
-    public class CustomeAdapter3 extends ArrayAdapter<String> {
+    public class CustomeAdapter extends ArrayAdapter<String> {
 
         Context context;
-        public ArrayList<ListItem3> itemArrayList;
-        public ArrayList<ListItem3> orig;
+        public ArrayList<ListItem> itemArrayList;
+        public ArrayList<ListItem> orig;
 
-        public CustomeAdapter3(Context context,ArrayList<ListItem3> itemArrayList) {
-            super(context, R.layout.fragment_orders);
+        public CustomeAdapter(Context context,ArrayList<ListItem> itemArrayList) {
+            super(context, R.layout.listrow);
             this.context = context;
             this.itemArrayList=itemArrayList;
         }
@@ -220,15 +220,19 @@ public class Orders extends Fragment {
 
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            CustomeAdapter3.ListHolder holder;
-            convertView = getActivity().getLayoutInflater().inflate(R.layout.fragment_orders, null);
+            ListHolder holder;
+            convertView = getActivity().getLayoutInflater().inflate(R.layout.listrow, null);
             holder = new ListHolder();
             //ImageView imageView = (ImageView) convertView.findViewById(R.id.list_item_image);
-            holder.quantity = (TextView) convertView.findViewById(R.id.desc);
+            holder.name = (TextView) convertView.findViewById(R.id.desc);
             holder.price = (TextView) convertView.findViewById(R.id.price);
+            holder.no_of_quantity = (TextView) convertView.findViewById(R.id.quantity);
+            holder.add = (Button) convertView.findViewById((R.id.add));
+            holder.pos = position;
+            holder.add.setTag(position);
 
             //imageView.setImageResource(itemArrayList.get(position).getImage());
-            /*holder.add.setOnClickListener(new View.OnClickListener() {
+            holder.add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int index = (int) view.getTag();
@@ -245,19 +249,22 @@ public class Orders extends Fragment {
                         e.printStackTrace();
                     }
                 }
-            });*/
-            holder.quantity.setText(itemArrayList.get(position).getQuantity());
+            });
+            holder.name.setText(itemArrayList.get(position).getName());
             String pricetext = "";
             pricetext = "Rs. " + itemArrayList.get(position).getPrice();
             holder.price.setText(pricetext);
+            holder.no_of_quantity.setText(itemArrayList.get(position).getNo_of_items());
 
             return convertView;
         }
 
         public class ListHolder
         {
-            TextView quantity;
+            TextView name;
             TextView price;
+            TextView no_of_quantity;
+            Button add;
             int pos;
         }
 
@@ -267,12 +274,12 @@ public class Orders extends Fragment {
                 @Override
                 protected FilterResults performFiltering(CharSequence constraint) {
                     final FilterResults oReturn = new FilterResults();
-                    final ArrayList<ListItem3> results = new ArrayList<ListItem3>();
+                    final ArrayList<ListItem> results = new ArrayList<ListItem>();
                     if (orig == null)
                         orig = itemArrayList;
                     if (constraint != null) {
                         if (orig != null && orig.size() > 0) {
-                            for (final ListItem3 g : orig) {
+                            for (final ListItem g : orig) {
                                 if (g.getName().toLowerCase()
                                         .contains(constraint.toString().toLowerCase()))
                                     re  sults.add(g);
@@ -287,30 +294,33 @@ public class Orders extends Fragment {
                 @Override
                 protected void publishResults(CharSequence constraint,
                                               FilterResults results) {
-                    itemArrayList = (ArrayList<ListItem3>) results.values;
+                    itemArrayList = (ArrayList<ListItem>) results.values;
                     notifyDataSetChanged();
                 }
             };
         }*/
     }
 
-    public class ListItem3 {
+    public static class ListItem {
 
-        private String quantity;
+        private String name;
         private String price;
+        public String no_of_items = "0";
 
-        public ListItem3(String quantity,String price){
-            this.quantity = quantity;
+        public ListItem(String name,String price,int image){
+            this.name = name;
             this.price = price;
         }
 
-        public String getQuantity(){
-            return quantity;
+        public String getName(){
+            return name;
         }
 
         public String getPrice(){
             return price;
         }
+
+        public String getNo_of_items(){ return no_of_items; }
 
     }
 

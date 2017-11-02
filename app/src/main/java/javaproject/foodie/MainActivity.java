@@ -14,11 +14,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static public int f_no = 0;
+    static public int cat_id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +48,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                Fragment fragment = new Cart();
+                Fragment fragment = new BillActivity();
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_main,fragment);
                 ft.commit();
@@ -62,13 +72,13 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(f_no != 0)
+            if(cat_id != 0)
             {
                 Fragment fragment = new fragment_nav();
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_main, fragment);
                 ft.commit();
-                f_no = 0;
+                cat_id = 0;
             }
             else
             {
@@ -93,9 +103,79 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
-        }
+            int count = 0, bill_amount = 0;
+            ConnectionClass connectionClass = new ConnectionClass();
+            final Connection con = connectionClass.CONN();
+            try{
+                if (con != null) {
+                    Statement st = con.createStatement();
+                    ResultSet rs;
+                    rs = st.executeQuery("select * from cart");
+                    boolean flag = false;
 
+                    if (rs.first())
+                    {
+                        count = 1;
+                        bill_amount += Integer.parseInt(rs.getString(2));
+                    }
+                    while (rs.next()){
+                        count++;
+                        bill_amount += Integer.parseInt(rs.getString(2));
+                    }
+
+
+
+                }
+                else {
+                    Toast.makeText(this, "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception e) {
+                Toast.makeText(this, "Exception : "+e, Toast.LENGTH_SHORT).show();
+            }
+            ConnectionClass connectionClass3 = new ConnectionClass();
+            Connection con3 = connectionClass3.CONN();
+            con3 = connectionClass3.CONN();
+
+            Statement st1 ;
+            try {
+                Toast.makeText(this, "Order Successfully placed!!\nYour bill_amount is: Rs" + bill_amount, Toast.LENGTH_LONG).show();
+                st1 = con3.createStatement();
+                String sql2 = "insert into orders values(" + count + "," + bill_amount + ")";
+                st1.execute(sql2);
+            } catch (SQLException e) {
+
+                Toast.makeText(this, "Order Succsdvsdfcsdavasvcdcessfully placed!!\nYour bill_amount is: Rs" + bill_amount, Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+            ConnectionClass connectionClass2 = new ConnectionClass();
+            //final Connection con = connectionClass.CONN();
+            Connection con2 = connectionClass2.CONN();
+            Statement st2;
+            try {
+                //Toast.makeText(this, "Cart Cleared!", Toast.LENGTH_LONG).show();
+                st2 = con2.createStatement();
+                String sql2 = "truncate cart";
+                st2.execute(sql2);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(id == R.id.action_clear)
+        {
+            ConnectionClass connectionClass = new ConnectionClass();
+            final Connection con = connectionClass.CONN();
+            Connection con1 = connectionClass.CONN();
+            Statement st1;
+            try {
+                Toast.makeText(this, "Cart Cleared!", Toast.LENGTH_LONG).show();
+                st1 = con1.createStatement();
+                String sql2 = "truncate cart";
+                st1.execute(sql2);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -147,41 +227,71 @@ public class MainActivity extends AppCompatActivity
     public void onSelectCategory(View view)
     {
         if(view.getId() == R.id.cardView) {
-            Fragment fragment = new SnacksList();
+            cat_id = 1;
+            Fragment fragment = new ListActivity();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
-            f_no = 1;
         }
 
         else if(view.getId() == R.id.cardView2) {
-            Fragment fragment = new ChatList();
+            cat_id = 2;
+            Fragment fragment = new ListActivity();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
-            f_no = 2;
+
         }
         else if(view.getId() == R.id.cardView3) {
-            Fragment fragment = new ChineseList();
+            cat_id = 3;
+            Fragment fragment = new ListActivity();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
-            f_no = 3;
         }
         else if(view.getId() == R.id.cardView4) {
-            Fragment fragment = new SouthIndianList();
+
+            cat_id = 4;
+            Fragment fragment = new ListActivity();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
-            f_no = 4;
         }
         else if(view.getId() == R.id.cardView5) {
             Fragment fragment = new BeveragesList();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.commit();
-            f_no = 5;
+            cat_id = 5;
         }
         }
+/*
+    private void displayQuantity(View v, int number) {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_chat);
+        quantityTextView.setText("" + number);
+
+    }
+
+    public void increaseQuantity(View view) {
+        //displayQuantity(view, );
+        // displayPrice(i*20);
+    }
+
+    public void decreaseQuantity(View view) {
+
+        if (no_ocat_idodles > 0) {
+            displayQuantity(--no_ocat_idodles);
+        }
+    }
+
+    public void added_to_cart(View view) {
+        if (no_ocat_idodles > 0)
+            Toast.makeText(this, no_ocat_idodles + " " + HakkaNoodles + " added", Toast.LENGTH_SHORT).show();
+        if (no_ocat_idodles == 0)
+            Toast.makeText(this, "Tu Uth..Ghari ja ani banav", Toast.LENGTH_SHORT).show();
+
+
+    }*/
+
 }
 

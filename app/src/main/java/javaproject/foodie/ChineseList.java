@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class ChineseList extends Fragment {
     String HakkaNoodles = "Veg Hakka Noodles";
-    int no_of_noodles = 0;
+    int no_of_items = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

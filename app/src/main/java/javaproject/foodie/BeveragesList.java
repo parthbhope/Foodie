@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class BeveragesList extends android.support.v4.app.Fragment {
     String thumbsup = "Thumbs Up";
-    int no_of_thumbsup = 0;
+    int no_of_items = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
